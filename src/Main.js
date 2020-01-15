@@ -1,15 +1,17 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import NOTES from './dummy-store'
 import './App.css';
 
 class Main extends React.Component {
   render() {
+    console.log(this.props.notes)
+    const noteList = this.props.notes.map(note => note.name)
+    
     return (
 
-        <div className="App">
-          
-        {NOTES.notes.map(note => note.name)}
+        <div className="Main">
+        
+        {noteList}
              
 
         </div>

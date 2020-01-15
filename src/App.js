@@ -2,6 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import Main from './Main';
 import NOTES from './dummy-store';
+import Folders from './Folders'
 import './App.css';
 
 class App extends React.Component {
@@ -17,7 +18,7 @@ class App extends React.Component {
 
   render() {
     const { NOTES } = this.state;
-
+    console.log(NOTES)
     return (
 
         <div className="App">
@@ -28,26 +29,49 @@ class App extends React.Component {
           </nav>
           
           <div>
-            <Sidebar>
-              <Route 
-                exact path='/' 
-                render={() => <MainSideBar folders={NOTES.folders} />}
-              />
+           
               
-              <Route path='/folder-id' component={folderIDComponent} />
-            </Sidebar>
+              
+
+              <Route 
+                exact
+                path='/' 
+                component={Folders}                  
+                 />
+                            
+                 
+                
+              
+              
+                 <Route 
+                    path='/folders/:folderId' 
+                    render={(props) => 
+                      <Main
+                        notes={NOTES.notes.find(note => note.folderId === props.match.params.folderId)}
+                      />}
+                
+                    />
+
+                  <Route 
+                    exact
+                    path='/' 
+                    render={() => 
+                      <Main
+                        notes={NOTES}
+                        
+                      />}
+                
+                    />
+              
+
+
+
+              
+          
             
-            <Main>
-              <Route exact path='/' component={MainMain} />
-              <Route path='/folder-id' component={folderMain} />
-            </Main>
-            <Route 
-              exact
-              path='/'
-              render={() => 
-                <Main 
-                />}
-              />
+           
+           
+           
 
           </div>
         </div>
