@@ -10,7 +10,7 @@ export default function Folders() {
       <ul className='FolderList'>
         {NOTES.folders.map(folder =>
           <li key={folder.id}>
-            <Link to={`/folders/${folder.name}`}>
+            <Link to={`/folders/${folder.id}`}>
               {folder.name}
             </Link>
           </li>

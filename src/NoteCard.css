@@ -1,0 +1,24 @@
+.NoteCard {
+    display: flex;
+    border: 1px solid black;
+    margin-top: 2px;
+
+    
+}
+
+.notecard-title {
+    text-align: left;
+}
+
+.notecard-button-box {
+    
+    height: 4vh;
+    
+    
+}
+
+button {
+    position: relative;
+    bottom: -60px;
+}
+
