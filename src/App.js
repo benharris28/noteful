@@ -31,7 +31,7 @@ class App extends React.Component {
         
       <div>
       <main>
-        <div className="Sidebar-app"> 
+        <div className="App__nav"> 
           <Route 
              exact
             path='/' 
@@ -53,7 +53,9 @@ class App extends React.Component {
                 }
     
               />
-
+            </div>
+            
+            <div className="App__main">
             <Route 
               path='/notes/:id' 
               render={( props ) => {
@@ -81,10 +83,10 @@ class App extends React.Component {
                 }
     
               />
-        </div>
+       
         
         
-        <div className="main-app">
+        
           <Route
             exact
             path='/' 
