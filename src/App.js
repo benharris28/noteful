@@ -96,14 +96,14 @@ class App extends React.Component {
 
   
   render() {
-    const contextValue = {
+    const value = {
       NOTES: this.state.NOTES,
     }
    
     return (
 
       <div className="App">
-       <NotefulContext.Provider value={contextValue}>
+       <NotefulContext.Provider value={value}>
         <nav className="App__sidebar">
           {this.renderSidebar()}
         </nav>

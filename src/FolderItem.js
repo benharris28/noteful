@@ -1,9 +1,13 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import NotefulContext from './NotefulContext';
 import './FolderItem.css';
 
 
 class FolderItem extends React.Component {
+  
+  static contextType = NotefulContext;
+
   render() {
     
     const folders = this.props;

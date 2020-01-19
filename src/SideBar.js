@@ -17,13 +17,17 @@ class SideBar extends React.Component {
   static contextType = NotefulContext;
   
   render() {
+    const { NOTES } = this.context
+    console.log(this.context)
     
-  
-    const folderList = this.context.folders
-    const { path } = this.props;
-    const folders = path !== '/' ? folderList.find(folder => folder.id === this.props.match.params.folderId) : 
-    folderList.map(folder => 
-        <FolderItem key={folder.id} />)
+    const folderList = NOTES.folders
+    console.log(this.props.match.path)
+    const { path } = this.props.match
+    
+    const folders = path === '/'
+      ? folderList.map(folder => <FolderItem key={folder.id} name={folder.name} />)
+      : folderList.find(folder => <FolderItem key={folder.id} name={folder.name} />)
+       
     
     return (
 
