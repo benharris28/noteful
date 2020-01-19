@@ -6,6 +6,7 @@ import Folders from './Folders'
 import SideBar from './SideBar';
 import NotePageSideBar from './NotePageSideBar';
 import Note from './Note';
+import NotefulContext from './NotefulContext';
 import './App.css';
 
 class App extends React.Component {
@@ -19,6 +20,8 @@ class App extends React.Component {
     })
   }
 
+  
+
   // Render three Sidebar routes
   renderSidebar() {
     const { NOTES } = this.state;
@@ -27,22 +30,13 @@ class App extends React.Component {
           <Route 
             exact
             path='/' 
-            render={() => 
-              <SideBar
-                folders={NOTES.folders} /> }              
+            component={SideBar}              
             />
 
             <Route 
               path='/folders/:folderId' 
-              render={( props ) => {
-                console.log(props)
-                console.log(props.match.params.folderId)
-                const noteTest = NOTES.notes.filter(note => note.folderId === 'b07161a6-ffaf-11e8-8eb2-f2801f1b9fd1')
-                console.log(noteTest)
-                return <SideBar
-                folders={NOTES.folders.filter(folder => folder.id === props.match.params.folderId)}
-                />}
-                }
+              component={SideBar}
+               
               />
 
           <Route 
@@ -102,12 +96,14 @@ class App extends React.Component {
 
   
   render() {
-    const { NOTES } = this.state;
+    const contextValue = {
+      NOTES: this.state.NOTES,
+    }
    
     return (
 
       <div className="App">
-        
+       <NotefulContext.Provider value={contextValue}>
         <nav className="App__sidebar">
           {this.renderSidebar()}
         </nav>
@@ -119,7 +115,7 @@ class App extends React.Component {
         <div className="App__main">
           {this.renderMain()}
         </div>
-          
+        </NotefulContext.Provider> 
       </div>
         
       );
