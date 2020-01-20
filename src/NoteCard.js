@@ -1,20 +1,24 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import NotefulContext from './NotefulContext';
 
 import './NoteCard.css';
 
 class NoteCard extends React.Component {
-  render() {
+  
+    static contextType = NotefulContext;
+
+    render() {
     
-    const notes = this.props;
+    const { id, name, modified } = this.props;
     
     return (
 
         <div className="NoteCard">
             <div className="notecard-title">
-                <h2>{notes.name}</h2>
+                <h2>{name}</h2>
             
-                <p>{notes.modified}</p>
+                <p>{modified}</p>
            </div>
             <div className="notecard-button-box">
                 <button>

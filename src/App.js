@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import Main from './Main';
+import MainFolder from './MainFolder';
 import NOTES from './dummy-store';
 import Folders from './Folders'
 import SideBar from './SideBar';
@@ -56,38 +57,21 @@ class App extends React.Component {
     return (
       <>
         <Route 
-          path='/notes/:id' 
-          render={( props ) => {
-            console.log(props)
-            console.log(props.match.params.id)
-            const noteTest = NOTES.notes.filter(note => note.folderId === 'b07161a6-ffaf-11e8-8eb2-f2801f1b9fd1')
-            console.log(noteTest)
-              return (
-                <Note
-                  notes={NOTES.notes.find(note => note.id === props.match.params.id)}/>)
-            }}/>
+          path='/notes/:noteId' 
+          component={Note}
+          />  
+            
         
         <Route 
           path='/folders/:folderId' 
-          render={( props ) => {
-            console.log(props)
-              console.log(props.match.params.folderId)
-              const noteTest = notes.filter(note => note.folderId === 'b07161a6-ffaf-11e8-8eb2-f2801f1b9fd1')
-              console.log(noteTest)
-                return <Main
-                  notes={NOTES.notes.filter(note => note.folderId === props.match.params.folderId)}/>}
-                }
+          component={Main}
     
               />
         
         <Route
           exact
           path='/' 
-          render={() => 
-            <Main
-              notes={NOTES.notes}
-             
-           />} 
+          component={Main}
            />    
 
   

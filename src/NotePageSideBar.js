@@ -4,6 +4,7 @@ import NotefulContext from './NotefulContext';
 import './App.css';
 import { findRenderedComponentWithType } from 'react-dom/test-utils';
 import { getNodeText } from '@testing-library/dom';
+import { noteCompare, folderDisplay } from './helperFunctions';
 
 class NotePageSideBar extends React.Component {
   
@@ -14,11 +15,11 @@ class NotePageSideBar extends React.Component {
   // Need to display the correct folder according to path
    const { notes, folders } = this.context;
    const { noteId } = this.props.match.params
-
-   const noteCompare = notes.find(note => noteId === note.id)
   
-  const folderDisplay = folders.find(folder => folder.id === noteCompare.folderId)
-  console.log(folderDisplay)
+
+  const noteFound = noteCompare(notes, noteId)
+  
+  const folder = folderDisplay(folders, noteFound.folderId)
 
     return (
 
@@ -31,7 +32,7 @@ class NotePageSideBar extends React.Component {
             Go Back
         </button>
         <div className='NotePageNav_folder-title'>
-          {folderDisplay.name}
+          {folder.name}
         </div>
              
 
