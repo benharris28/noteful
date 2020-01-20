@@ -17,12 +17,35 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    this.setState({
-      notes: NOTES.notes,
-      folders: NOTES.folders
+    Promise.all([
+      fetch('http://localhost:9090/notes'),
+      fetch('http://localhost:9090/folders')
+
+    ])
+    .then(([notesRes, foldersRes]) => {
+      if (!notesRes.ok)
+        return notesRes.json().then(e => Promise.reject(e));
+      if (!foldersRes.ok)
+        return foldersRes.json().then(e => Promise.reject(e));
+
+      return Promise.all([notesRes.json(), foldersRes.json()]);
     })
+    .then(([notes, folders]) => {
+      this.setState({
+        notes, folders
+      });
+    })
+    .catch(error => {
+      console.error({error});
+    });
+    
   }
   
+  handleDeleteNote = noteId => {
+    this.setState({
+      notes: this.state.notes.filter(note => noteId !== note.id)
+    })
+  }
 
   
 
@@ -83,7 +106,8 @@ class App extends React.Component {
   render() {
     const value = {
       notes: this.state.notes,
-      folders: this.state.folders
+      folders: this.state.folders,
+      deleteNote: this.handleDeleteNote
     }
    
     return (

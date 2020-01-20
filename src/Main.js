@@ -8,6 +8,8 @@ import './App.css';
 class Main extends React.Component {
   static contextType = NotefulContext;
 
+  
+
   render() {
     const { notes } = this.context
     const { folderId } = this.props.match.params
@@ -23,7 +25,8 @@ class Main extends React.Component {
               <NoteCard 
                 id={note.id}
                 name={note.name}
-                modified={note.modified}/>
+                modified={note.modified}
+                />
             </li>
             )}
         </ul>

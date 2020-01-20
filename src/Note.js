@@ -8,32 +8,34 @@ import './NoteCard.css';
 class Note extends React.Component {
     static contextType = NotefulContext;
     
+    handleDeleteNote = noteId => {
+        this.props.history.push(`/`)
+    }
+    
     render() {
     
     
     const { notes } = this.context
-    console.log(notes)
     const { noteId } = this.props.match.params
-    console.log(noteId)
+  
 
     const note = noteCompare(notes, noteId)
-
-    console.log(note)
+    
+   
     
     return (
-        <div>
-        <div className="NoteCard">
+       
+        <div className="NotePageMain">
             <div className="notecard-title">
-                <h2>{note.name}</h2>
-            
-                <p>{note.modified}</p>
+                <Note 
+                    id={note.id}
+                    name={note.name}
+                    modified={note.modified}
+                    onDeleteNote={this.handleDeleteNote}
+                    />
            </div>
-            <div className="notecard-button-box">
-                <button>
-                    Delete
-                </button>
-            </div>
-            </div>
+            
+           
             <div className="note_content">
                 {note.content}
             </div>
