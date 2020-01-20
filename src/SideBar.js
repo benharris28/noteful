@@ -1,6 +1,6 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
-import FolderItem from './FolderItem';
+import { NavLink, Link } from 'react-router-dom';
+
 import NotefulContext from './NotefulContext';
 import './App.css';
 
@@ -17,26 +17,42 @@ class SideBar extends React.Component {
   static contextType = NotefulContext;
   
   render() {
-    const { NOTES } = this.context
-    console.log(this.context)
+    const { notes = [], folders = []} = this.context
+
+    console.log(notes)
     
-    const folderList = NOTES.folders
-    console.log(this.props.match.path)
-    const { path } = this.props.match
     
-    const folders = path === '/'
-      ? folderList.map(folder => <FolderItem key={folder.id} name={folder.name} />)
-      : folderList.find(folder => <FolderItem key={folder.id} name={folder.name} />)
+    
+
+   
+      
+    
        
     
     return (
 
-        <div className="SideBar">
         
-        {folders}
-             
+        
+        <div className="SideBar">
+            <ul className="SideBar_list">
+              {folders.map(folder => 
+                <li key={folder.id}>
+                    <NavLink
+                      className="SideBar_folder-link"
+                      to={`/folder/${folder.id}`}>
+                      
+                      {folder.name}
+                    </NavLink>
+                </li>
+                )}
+            </ul>
+           
+      
 
         </div>
+             
+
+        
       );
 
     }
