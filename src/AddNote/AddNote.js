@@ -1,5 +1,6 @@
 import React from 'react';
 import NotefulContext from '../NotefulContext';
+import ValidationError from '../ValidationError/ValidationError';
 
 class AddNote extends React.Component {
     // Form for name, content, folder
@@ -8,11 +9,13 @@ class AddNote extends React.Component {
     // API post call on submit of form
     // Add to context
     // Add button in main
+    static contextType = NotefulContext;
+    
     constructor(props) {
         super(props);
-        this.addNoteName = React.createRef(),
-        this.addNoteContent = React.createRef(),
-        this.addNoteFolder = React.createRef(),
+        this.addNoteName = React.createRef();
+        this.addNoteContent = React.createRef();
+        this.addNoteFolder = React.createRef();
         this.state = {
             name: {
                 value: '',
@@ -28,7 +31,15 @@ class AddNote extends React.Component {
     }
 
     updateName(name) {
-        this.setState({ name: {value: addNote-name}})
+        this.setState({ name: {value: name}})
+    }
+
+    updateContent(content) {
+        this.setState({ content: {value: content }})
+    }
+
+    updateFolder(folder) {
+        this.setState({ folder: { value: folder} })
     }
 
     validateName() {
@@ -39,7 +50,34 @@ class AddNote extends React.Component {
     }
 
     onSubmit(event) {
+        event.preventDefault();
+        const { name, content, folder } = this.state;
+        const addNote = {
+            name: name.value,
+            content: content.value,
+            folderId: folder.value,
+            modified: new Date()
+        }
 
+        fetch('http://localhost:9090/notes', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(addNote),
+        })
+        .then(res => {
+            if(!res.ok)
+                return res.json().then(e => Promise.rejected(e))
+            return res.json()
+        })
+        .then(() => {
+            this.context.addNote(addNote)
+            this.props.history.push(`/folder/${folder}`)
+        })
+        .catch(error => {
+            console.error({ error })
+        })
     }
     
     render() {
@@ -71,12 +109,16 @@ class AddNote extends React.Component {
                         type="text"
                         id="addNote-content"
                         name="addNote-content"
-                        ref={this.addNoteContent} />
-                    
+                        ref={this.addNoteContent} 
+                        onChange={e => this.updateContent(e.target.value)} />
                     <label htmlFor='note-folder-select'>
                         Folder
                     </label>
-                    <select id='addNote-folder' name='addNote-folder' ref={this.addNoteFolder}>
+                    <select 
+                        id='addNote-folder' 
+                        name='addNote-folder' 
+                        ref={this.addNoteFolder}
+                        onChange={e => this.updateFolder(e.target.value)}>
                         <option value={null}>...</option>
                         {folders.map(folder =>
                             <option key={folder.id} value={folder.id}>

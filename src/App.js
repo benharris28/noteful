@@ -6,12 +6,14 @@ import SideBar from './SideBar/SideBar';
 import NotePageSideBar from './NotePageSideBar/NotePageSideBar';
 import Note from './Note/Note';
 import NotefulContext from './NotefulContext';
+import AddFolder from './AddFolder/AddFolder';
+import AddNote from './AddNote/AddNote';
 import './App.css';
 
 class App extends React.Component {
   state = {
-    notes: NOTES.notes,
-    folders: NOTES.folders
+    notes: [],
+    folders: []
   };
 
   componentDidMount() {
@@ -51,6 +53,12 @@ class App extends React.Component {
     })
   }
 
+  handleAddNote = note => {
+    this.setState({
+      notes: [...this.state.notes, note]
+    })
+  }
+
   
 
   // Render three Sidebar routes
@@ -80,7 +88,7 @@ class App extends React.Component {
           <Route
             exact
             path='/add-folder'
-            component={NotePageSidebar}
+            component={NotePageSideBar}
             />
         </>
     )}
@@ -124,7 +132,8 @@ class App extends React.Component {
       notes: this.state.notes,
       folders: this.state.folders,
       deleteNote: this.handleDeleteNote,
-      addFolder: this.handleAddFolder
+      addFolder: this.handleAddFolder,
+      addNote: this.handleAddNote
     }
    
     return (

@@ -7,7 +7,14 @@ import { getNodeText } from '@testing-library/dom';
 import { noteCompare, folderDisplay } from '../helperFunctions';
 
 class NotePageSideBar extends React.Component {
-  
+  static defaultProps = {
+    history: {
+      goBack: () => { }
+    },
+    match: {
+      params: {}
+    }
+  }
   static contextType = NotefulContext;
 
   render() {
@@ -17,7 +24,7 @@ class NotePageSideBar extends React.Component {
    const { noteId } = this.props.match.params
   
 
-  const noteFound = noteCompare(notes, noteId)
+  const noteFound = noteCompare(notes, noteId) || {}
   
   const folder = folderDisplay(folders, noteFound.folderId)
 
@@ -28,12 +35,17 @@ class NotePageSideBar extends React.Component {
         <button
             role='link'
             className='NotePageNav__back-button'
+            onClick={() => this.props.history.goBack()}
             >
             Go Back
         </button>
-        <div className='NotePageNav_folder-title'>
+        {folder && (
+          <div className='NotePageNav_folder-title'>
           {folder.name}
+        
+        
         </div>
+        )}
              
 
         </div>

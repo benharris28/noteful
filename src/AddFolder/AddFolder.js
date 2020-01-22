@@ -11,8 +11,16 @@ class AddFolder extends React.Component {
     constructor(props) {
         super(props);
         this.nameInput = React.createRef();
+        this.state = {
+            name: ''
+        }
     }
 
+
+    updateName(name) {
+        this.setState({ name: name});
+        console.log(this.state.name)
+    }
 
     updateContext(name) {
         // update context here
@@ -21,8 +29,9 @@ class AddFolder extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         //Api call goes here
-        const folderName = this.nameInput.current.value;
-        console.log(folderName)
+        const { name } = this.state;
+        console.log(name.value);
+        const folderName = name.value
 
         fetch('http://localhost:9090/folders', {
             method: 'POST',
@@ -53,7 +62,7 @@ class AddFolder extends React.Component {
                 <h2>Add Folder</h2>
                 <form 
                     className="AddFolder_form"
-                    onSubmit={this.handleSubmit}>
+                    onSubmit={e => this.handleSubmit(e)}>
                     
                     <label htmlFor="name">Folder Name</label>
                     <input
@@ -62,6 +71,8 @@ class AddFolder extends React.Component {
                         className="AddFolder_name"
                         name="name"
                         ref={this.nameInput}
+                        onChange={e => this.updateName(e.target.value)}
+
                         />
                     <button
                         type="submit">

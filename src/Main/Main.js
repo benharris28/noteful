@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import NoteCard from '../NoteCard/NoteCard';
 import NotefulContext from '../NotefulContext';
 import { noteCompare, getNotesByFolder } from '../helperFunctions';
@@ -30,7 +30,13 @@ class Main extends React.Component {
             </li>
             )}
         </ul>
+        <Link
+            className="addNote-button"
+            to='/add-note'>
+              Add Note
+        </Link>
 
+          
         
       </section>
    
