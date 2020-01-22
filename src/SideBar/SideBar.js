@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 
-import NotefulContext from './NotefulContext';
-import './App.css';
+import NotefulContext from '../NotefulContext';
+import '../App.css';
 
 class SideBar extends React.Component {
   static defaultProps = {
@@ -46,7 +46,17 @@ class SideBar extends React.Component {
                 </li>
                 )}
             </ul>
-           
+           <div className="button-container">
+             
+            <Link
+                className="addFolder-button"
+                to='/add-folder'>
+                  Add Folder
+            </Link>
+               
+                
+            
+           </div>
       
 
         </div>

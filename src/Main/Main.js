@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import NoteCard from './NoteCard';
-import NotefulContext from './NotefulContext';
-import { noteCompare, getNotesByFolder } from './helperFunctions';
-import './App.css';
+import NoteCard from '../NoteCard/NoteCard';
+import NotefulContext from '../NotefulContext';
+import { noteCompare, getNotesByFolder } from '../helperFunctions';
+import '../App.css';
 
 class Main extends React.Component {
   static contextType = NotefulContext;

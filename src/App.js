@@ -1,12 +1,10 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
-import Main from './Main';
-import MainFolder from './MainFolder';
+import Main from './Main/Main';
 import NOTES from './dummy-store';
-import Folders from './Folders'
-import SideBar from './SideBar';
-import NotePageSideBar from './NotePageSideBar';
-import Note from './Note';
+import SideBar from './SideBar/SideBar';
+import NotePageSideBar from './NotePageSideBar/NotePageSideBar';
+import Note from './Note/Note';
 import NotefulContext from './NotefulContext';
 import './App.css';
 
@@ -47,6 +45,12 @@ class App extends React.Component {
     })
   }
 
+  handleAddFolder = folderName => {
+    this.setState({
+      folders: [...this.state.folders, folderName]
+    })
+  }
+
   
 
   // Render three Sidebar routes
@@ -71,7 +75,13 @@ class App extends React.Component {
             exact
             path='/notes/:noteId'
             component={NotePageSideBar}
-            />    
+            />  
+
+          <Route
+            exact
+            path='/add-folder'
+            component={NotePageSidebar}
+            />
         </>
     )}
 
@@ -95,7 +105,13 @@ class App extends React.Component {
           exact
           path='/' 
           component={Main}
-           />    
+           />  
+
+        <Route
+          exact
+          path='/add-folder'
+          component={AddFolder}
+          />
 
   
     </>
@@ -107,7 +123,8 @@ class App extends React.Component {
     const value = {
       notes: this.state.notes,
       folders: this.state.folders,
-      deleteNote: this.handleDeleteNote
+      deleteNote: this.handleDeleteNote,
+      addFolder: this.handleAddFolder
     }
    
     return (

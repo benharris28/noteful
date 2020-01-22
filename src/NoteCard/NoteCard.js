@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import NotefulContext from './NotefulContext';
+import NotefulContext from '../NotefulContext';
 
 import './NoteCard.css';
 
