@@ -1,7 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { format, formatWithOptions } from 'date-fns/fp'
-import { moment } from 'moment';
 import PropTypes from 'prop-types'
 import NotefulContext from '../NotefulContext';
 import './NoteContent.css';
@@ -78,12 +76,9 @@ class NoteContent extends React.Component {
 }
 
 NoteContent.propTypes = {
-    name: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-   
-
-
-    
-};
+    id: PropTypes.string,
+    name: PropTypes.string,
+    modified: PropTypes.string,
+}
 
 export default NoteContent;

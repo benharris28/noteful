@@ -1,11 +1,9 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import Main from './Main/Main';
-import NOTES from './dummy-store';
 import SideBar from './SideBar/SideBar';
 import NotePageSideBar from './NotePageSideBar/NotePageSideBar';
 import Note from './Note/Note';
-import NoteCard from './NoteCard/NoteCard';
 import NotefulContext from './NotefulContext';
 import AddFolder from './AddFolder/AddFolder';
 import AddNote from './AddNote/AddNote';
@@ -64,10 +62,10 @@ class App extends React.Component {
 
   
 
-  // Render three Sidebar routes
+ 
   renderSidebar() {
-    const { notes, folders } = this.state;
-    console.log(this.state)
+    
+  
     return (
       <>
           <Route 
@@ -97,7 +95,7 @@ class App extends React.Component {
     )}
 
   renderMain() {
-    const { notes, folders } = this.state;
+    
     return (
       <>
         <Route 

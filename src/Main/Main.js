@@ -1,8 +1,8 @@
 import React from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import NoteContent from '../NoteContent/NoteContent';
 import NotefulContext from '../NotefulContext';
-import { noteCompare, getNotesByFolder } from '../helperFunctions';
+import { getNotesByFolder } from '../helperFunctions';
 import './Main.css';
 
 class Main extends React.Component {

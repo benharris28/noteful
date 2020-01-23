@@ -24,7 +24,7 @@ class AddNote extends React.Component {
         this.state = {
             name: {
                 value: '',
-                touched: false
+                touched: false,
             },
             content: {
                 value: ''
@@ -37,7 +37,7 @@ class AddNote extends React.Component {
     }
 
     updateName(name) {
-        this.setState({ name: {value: name}})
+        this.setState({ name: {value: name, touched: true}})
         console.log(this.state.name.value)
     }
 
@@ -51,12 +51,7 @@ class AddNote extends React.Component {
         () => {console.log(this.state.folder.value)})
     }
 
-    validateName() {
-        const name = this.state.name.value.trim();
-        if (name.length === 0) {
-            return 'Name is required';
-        } 
-    }
+    
 
     handleSubmit = e => {
         e.preventDefault();
@@ -91,6 +86,13 @@ class AddNote extends React.Component {
         })
     }
     
+    validateName() {
+        const name = this.state.name.value.trim();
+        if (name.length === 0) {
+            return 'Name is required';
+        } 
+    }
+    
     render() {
         const { folders=[] } = this.context
         const nameError = this.validateName();
@@ -110,7 +112,8 @@ class AddNote extends React.Component {
                         id="addNote-name"
                         name="name"
                         onChange={e => this.updateName(e.target.value)} />
-                        {this.state.name.touched && <ValidationError message={nameError} />}
+
+                        {this.state.name.touched && ( <ValidationError message={nameError} />)}
                     
                     <label htmlFor="addNote-content">
                         Content

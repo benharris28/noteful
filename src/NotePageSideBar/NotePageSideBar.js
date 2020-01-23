@@ -2,8 +2,6 @@ import React from 'react';
 
 import NotefulContext from '../NotefulContext';
 import '../App.css';
-import { findRenderedComponentWithType } from 'react-dom/test-utils';
-import { getNodeText } from '@testing-library/dom';
 import { noteCompare, folderDisplay } from '../helperFunctions';
 
 class NotePageSideBar extends React.Component {

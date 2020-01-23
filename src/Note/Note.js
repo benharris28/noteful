@@ -2,7 +2,9 @@ import React from 'react';
 import NotefulContext from '../NotefulContext';
 import { noteCompare } from '../helperFunctions';
 import NoteContent from '../NoteContent/NoteContent';
-import { Route } from 'react-router-dom';
+import NoteError from '../NoteError/NoteError';
+
+
 
 
 
@@ -33,8 +35,9 @@ class Note extends React.Component {
     return (
        
         <section className="Note">
-            
-                <NoteContent
+            <NoteError>
+
+            <NoteContent
                     id={note.id}
                     name={note.name}
                     modified={note.modified}
@@ -46,6 +49,10 @@ class Note extends React.Component {
             <div className="note_content">
                 {note.content}
             </div>
+
+
+            </NoteError>
+                
       
 
         </section>
@@ -55,5 +62,7 @@ class Note extends React.Component {
     }
   
 }
+
+
 
 export default Note;
