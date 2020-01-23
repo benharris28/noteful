@@ -29,14 +29,17 @@ class AddFolder extends React.Component {
        
         const { name } = this.state;
         console.log(name);
-        const folderName = name
+        const folder = {
+           name
+        }
+        console.log(folder)
 
         fetch('http://localhost:9090/folders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(folderName),
+            body: JSON.stringify(folder),
         })
         .then(res => {
             if(!res.ok)

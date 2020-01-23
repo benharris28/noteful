@@ -1,0 +1,18 @@
+.Main ul {
+    margin: 0;
+    padding: 10px;
+  }
+
+.Main li {
+    list-style: none;
+}
+
+.addNote-button-container {
+    max-width: 400px;
+}
+
+.addNote-button {
+    border: 1px solid black;
+    
+}
+

@@ -139,9 +139,9 @@ class App extends React.Component {
     }
    
     return (
-
+      <NotefulContext.Provider value={value}>
       <div className="App">
-       <NotefulContext.Provider value={value}>
+       
         <nav className="App__sidebar">
           {this.renderSidebar()}
         </nav>
@@ -150,12 +150,12 @@ class App extends React.Component {
           <Link to="/">Noteful</Link>
           </h1>
         </header>
-        <div className="App__main">
+        <main className="App__main">
           {this.renderMain()}
-        </div>
-        </NotefulContext.Provider> 
-      </div>
+        </main>
         
+      </div>
+      </NotefulContext.Provider> 
       );
 
   }

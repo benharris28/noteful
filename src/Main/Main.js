@@ -3,7 +3,7 @@ import { Route, Link } from 'react-router-dom';
 import NoteCard from '../NoteCard/NoteCard';
 import NotefulContext from '../NotefulContext';
 import { noteCompare, getNotesByFolder } from '../helperFunctions';
-import '../App.css';
+import './Main.css';
 
 class Main extends React.Component {
   static contextType = NotefulContext;
@@ -30,11 +30,13 @@ class Main extends React.Component {
             </li>
             )}
         </ul>
+        <div className="addNote-button-container">
         <Link
             className="addNote-button"
             to='/add-note'>
               Add Note
         </Link>
+        </div>
 
           
         

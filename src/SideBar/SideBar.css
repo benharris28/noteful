@@ -1,0 +1,18 @@
+.SideBar_list {
+    margin-top: 130px;
+}
+
+.SideBar li {
+    list-style: none;
+    border: 1px solid black;
+    margin: 10px;
+    height: 8vh;
+    padding-top: 30px;
+
+}
+
+.addFolder-button {
+    border: 1px solid black;
+    
+}
+

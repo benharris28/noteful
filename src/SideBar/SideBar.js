@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 
 import NotefulContext from '../NotefulContext';
-import '../App.css';
+import './SideBar.css';
 
 class SideBar extends React.Component {
   static defaultProps = {
