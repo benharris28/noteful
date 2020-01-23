@@ -1,7 +1,7 @@
 import React from 'react';
 import NotefulContext from '../NotefulContext';
 import { noteCompare } from '../helperFunctions';
-import NoteCard from '../NoteCard/NoteCard';
+import NoteContent from '../NoteContent/NoteContent';
 import { Route } from 'react-router-dom';
 
 
@@ -34,7 +34,7 @@ class Note extends React.Component {
        
         <section className="Note">
             
-                <NoteCard 
+                <NoteContent
                     id={note.id}
                     name={note.name}
                     modified={note.modified}
