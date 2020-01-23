@@ -7,6 +7,12 @@ import { Route } from 'react-router-dom';
 
 
 class Note extends React.Component {
+    static defaultProps = {
+        match: {
+            params: {}
+        }
+    }
+    
     static contextType = NotefulContext;
     
     handleDeleteNote = noteId => {
@@ -20,7 +26,7 @@ class Note extends React.Component {
     const { noteId } = this.props.match.params
   
 
-    const note = noteCompare(notes, noteId)
+    const note = noteCompare(notes, noteId) || {content: ''}
     
    
     

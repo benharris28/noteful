@@ -5,6 +5,7 @@ import NOTES from './dummy-store';
 import SideBar from './SideBar/SideBar';
 import NotePageSideBar from './NotePageSideBar/NotePageSideBar';
 import Note from './Note/Note';
+import NoteCard from './NoteCard/NoteCard';
 import NotefulContext from './NotefulContext';
 import AddFolder from './AddFolder/AddFolder';
 import AddNote from './AddNote/AddNote';
