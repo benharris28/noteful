@@ -49,8 +49,8 @@ class AddNote extends React.Component {
         } 
     }
 
-    onSubmit(event) {
-        event.preventDefault();
+    onSubmit = e => {
+        e.preventDefault();
         const { name, content, folder } = this.state;
         const addNote = {
             name: name.value,
@@ -71,9 +71,9 @@ class AddNote extends React.Component {
                 return res.json().then(e => Promise.rejected(e))
             return res.json()
         })
-        .then(() => {
-            this.context.addNote(addNote)
-            this.props.history.push(`/folder/${folder}`)
+        .then(note => {
+            this.context.addNote(note)
+            this.props.history.push(`/folder/${note.folderId}`)
         })
         .catch(error => {
             console.error({ error })

@@ -22,16 +22,14 @@ class AddFolder extends React.Component {
         console.log(this.state.name)
     }
 
-    updateContext(name) {
-        // update context here
-    }
     
-    handleSubmit(event) {
-        event.preventDefault();
-        //Api call goes here
+    
+    handleSubmit = event => {
+        event.preventDefault()
+       
         const { name } = this.state;
-        console.log(name.value);
-        const folderName = name.value
+        console.log(name);
+        const folderName = name
 
         fetch('http://localhost:9090/folders', {
             method: 'POST',
@@ -45,9 +43,9 @@ class AddFolder extends React.Component {
                 return res.json().then(e => Promise.rejected(e))
             return res.json()
         })
-        .then(() => {
-            this.context.addFolder(folderName)
-            this.props.history.push('/')
+        .then(folder => {
+            this.context.addFolder(folder)
+            this.props.history.push(`/folder/${folder.id}`)
         })
         .catch(error => {
             console.error({ error })
@@ -62,7 +60,8 @@ class AddFolder extends React.Component {
                 <h2>Add Folder</h2>
                 <form 
                     className="AddFolder_form"
-                    onSubmit={e => this.handleSubmit(e)}>
+                    onSubmit={e => this.handleSubmit(e)}
+                    action='#'>
                     
                     <label htmlFor="name">Folder Name</label>
                     <input
@@ -70,7 +69,7 @@ class AddFolder extends React.Component {
                         id="name"
                         className="AddFolder_name"
                         name="name"
-                        ref={this.nameInput}
+    
                         onChange={e => this.updateName(e.target.value)}
 
                         />

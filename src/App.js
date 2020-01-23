@@ -48,8 +48,10 @@ class App extends React.Component {
   }
 
   handleAddFolder = folderName => {
+    console.log(folderName)
     this.setState({
       folders: [...this.state.folders, folderName]
+      
     })
   }
 
