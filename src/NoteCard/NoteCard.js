@@ -1,5 +1,7 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { format, formatWithOptions } from 'date-fns/fp'
+import { eo } from 'date-fns/locale'
 import PropTypes from 'prop-types'
 import NotefulContext from '../NotefulContext';
 
@@ -36,15 +38,23 @@ class NoteCard extends React.Component {
     render() {
     
     const { id, name, modified } = this.props;
+ 
     
     return (
 
         <div className="NoteCard">
             <div className="notecard-title">
-                <h2>{name}</h2>
-            
-                <p>{modified}</p>
-           </div>
+                <Link
+                    to={`/note/{id}`}>
+                        <h2>{name}</h2>
+                </Link>
+            </div>
+            <div className="noteCard-modified"    >
+                Modified
+                {' '}
+                {modified}
+            </div> 
+        
             <div className="notecard-button-box">
                 <button
                     onClick={this.handleClickDelete}>

@@ -1,6 +1,7 @@
 import React from 'react';
 import NotefulContext from '../NotefulContext';
 import ValidationError from '../ValidationError/ValidationError';
+import './AddNote.css';
 
 class AddNote extends React.Component {
     // Form for name, content, folder
@@ -9,13 +10,17 @@ class AddNote extends React.Component {
     // API post call on submit of form
     // Add to context
     // Add button in main
+    static defaultProps = {
+        history: {
+            push: () => { }
+        }
+    }
+    
     static contextType = NotefulContext;
     
     constructor(props) {
         super(props);
-        this.addNoteName = React.createRef();
-        this.addNoteContent = React.createRef();
-        this.addNoteFolder = React.createRef();
+
         this.state = {
             name: {
                 value: '',
@@ -28,18 +33,22 @@ class AddNote extends React.Component {
                 value: ''
             }
         }
+        console.log(this.state.name.value)
     }
 
     updateName(name) {
         this.setState({ name: {value: name}})
+        console.log(this.state.name.value)
     }
 
     updateContent(content) {
         this.setState({ content: {value: content }})
+        console.log(this.state.content.value)
     }
 
     updateFolder(folder) {
         this.setState({ folder: { value: folder} })
+        console.log(this.state.folder.value)
     }
 
     validateName() {
@@ -52,12 +61,14 @@ class AddNote extends React.Component {
     onSubmit = e => {
         e.preventDefault();
         const { name, content, folder } = this.state;
+        console.log(name);
         const addNote = {
             name: name.value,
             content: content.value,
             folderId: folder.value,
             modified: new Date()
         }
+        console.log(addNote)
 
         fetch('http://localhost:9090/notes', {
             method: 'POST',
@@ -97,8 +108,7 @@ class AddNote extends React.Component {
                     <input
                         type="text"
                         id="addNote-name"
-                        name="addNote-name"
-                        ref={this.addNoteName}
+                        name="name"
                         onChange={e => this.updateName(e.target.value)} />
                         {this.state.name.touched && <ValidationError message={nameError} />}
                     
@@ -119,7 +129,7 @@ class AddNote extends React.Component {
                         name='addNote-folder' 
                         ref={this.addNoteFolder}
                         onChange={e => this.updateFolder(e.target.value)}>
-                        <option value={null}>...</option>
+                        <option value={null}>Please select a folder</option>
                         {folders.map(folder =>
                             <option key={folder.id} value={folder.id}>
                             {folder.name}

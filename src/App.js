@@ -123,6 +123,12 @@ class App extends React.Component {
           component={AddFolder}
           />
 
+        <Route
+          exact
+          path='/add-note'
+          component={AddNote}
+          /> 
+
   
     </>
     )
