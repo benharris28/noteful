@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { format, formatWithOptions } from 'date-fns/fp'
-import { eo } from 'date-fns/locale'
+import { moment } from 'moment';
 import PropTypes from 'prop-types'
 import NotefulContext from '../NotefulContext';
 
@@ -38,6 +38,7 @@ class NoteCard extends React.Component {
     render() {
     
     const { id, name, modified } = this.props;
+    
  
     
     return (
@@ -52,6 +53,7 @@ class NoteCard extends React.Component {
             <div className="noteCard-modified"    >
                 Modified
                 {' '}
+                
                 {modified}
             </div> 
         

@@ -47,8 +47,8 @@ class AddNote extends React.Component {
     }
 
     updateFolder(folder) {
-        this.setState({ folder: { value: folder} })
-        console.log(this.state.folder.value)
+        this.setState({ folder: { value: folder} },
+        () => {console.log(this.state.folder.value)})
     }
 
     validateName() {
@@ -58,7 +58,7 @@ class AddNote extends React.Component {
         } 
     }
 
-    onSubmit = e => {
+    handleSubmit = e => {
         e.preventDefault();
         const { name, content, folder } = this.state;
         console.log(name);
@@ -119,7 +119,7 @@ class AddNote extends React.Component {
                         type="text"
                         id="addNote-content"
                         name="addNote-content"
-                        ref={this.addNoteContent} 
+                       
                         onChange={e => this.updateContent(e.target.value)} />
                     <label htmlFor='note-folder-select'>
                         Folder
@@ -127,7 +127,7 @@ class AddNote extends React.Component {
                     <select 
                         id='addNote-folder' 
                         name='addNote-folder' 
-                        ref={this.addNoteFolder}
+            
                         onChange={e => this.updateFolder(e.target.value)}>
                         <option value={null}>Please select a folder</option>
                         {folders.map(folder =>

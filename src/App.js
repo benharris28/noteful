@@ -76,14 +76,14 @@ class App extends React.Component {
             />
 
             <Route 
-              path='/folders/:folderId' 
+              path='/folder/:folderId' 
               component={SideBar}
                
               />
 
           <Route 
             exact
-            path='/notes/:noteId'
+            path='/note/:noteId'
             component={NotePageSideBar}
             />  
 
@@ -100,13 +100,13 @@ class App extends React.Component {
     return (
       <>
         <Route 
-          path='/notes/:noteId' 
+          path='/note/:noteId' 
           component={Note}
           />  
             
         
         <Route 
-          path='/folders/:folderId' 
+          path='/folder/:folderId' 
           component={Main}
     
               />
