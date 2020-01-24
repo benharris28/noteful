@@ -1,5 +1,6 @@
 import React from 'react';
 import NotefulContext from '../NotefulContext';
+import ValidationError from '../ValidationError/ValidationError';
 
 class AddFolder extends React.Component {
     // Create form which accepts inputs and arranges into API call
@@ -55,9 +56,15 @@ class AddFolder extends React.Component {
         })
     } 
 
-    
+    validateName() {
+        const name = this.state.name.trim();
+        if (name.length === 0) {
+            return 'Name is required';
+        } 
+    }
     
     render() {
+        const nameError = this.validateName();
         return (
             <div className="AddFolder">
                 <h2>Add Folder</h2>
@@ -76,10 +83,13 @@ class AddFolder extends React.Component {
                         onChange={e => this.updateName(e.target.value)}
 
                         />
+                    
                     <button
-                        type="submit">
+                        type="submit"
+                        disabled={this.validateName()}>
                             Submit
                     </button>
+                    <ValidationError message={nameError} />
                 </form>
             </div>
         )

@@ -92,7 +92,7 @@ class AddNote extends React.Component {
             return 'Name is required';
         } 
     }
-    
+
     render() {
         const { folders=[] } = this.context
         const nameError = this.validateName();
@@ -141,7 +141,8 @@ class AddNote extends React.Component {
                     </select>
                     <div className="addNote-button-container">
                         <button 
-                            type="submit">
+                            type="submit"
+                            disabled={this.validateName()}>
                                 Submit
                             </button>
                     </div>
